@@ -29,9 +29,9 @@ class TestRegisterUser:
     @allure.description("Тест проверяет появление ошибки, при попытке создать"
                         "пользователя без заполнения одного из обязательных полей")
     @pytest.mark.parametrize("payload", [
-        PersonData.create_user_data_not_email(),
-        PersonData.create_user_data_not_password(),
-        PersonData.create_user_data_not_name()
+        PersonData.create_user_data(email=False),
+        PersonData.create_user_data(password=False),
+        PersonData.create_user_data(name=False)
     ])
     def test_create_user_not_data(self, payload):
         response = requests.post(AuthURLs.register_url, data=payload)
